@@ -1,27 +1,36 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" >
   </head>
   <body>
-    <script>
+    <h1>Twittler: "Even better than Twitter"
+    </h1>
+    <p> <script>
+    $(document).ready(function(){
+      var $p = $('p');
+      //$body.html(''); This line makes everything disappear
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
-        var index = streams.home.length - 1;
+      //function getTweets(){
+      index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          $tweet.appendTo($p);
           index -= 1;
         }
+      //}
 
-      });
+    });
+    </script> </p>
 
+    <button id=#refresh> Check for new Tweets </button>
+    <script>
+    //document.getElementById("#refresh").addEventListener("click", FILLME);
     </script>
   </body>
 </html>
