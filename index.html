@@ -4,7 +4,9 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <link rel="stylesheet" type="text/css" href="./styles.css" >
+    <script src="moment-with-locales.js"></script>
+    <link rel="stylesheet" href="twittlerStyle.css">
+    
   </head>
   <body>
     <h1>Twittler: "Even better than Twitter"
@@ -12,25 +14,58 @@
     <p> <script>
     $(document).ready(function(){
       var $p = $('p');
-      //$body.html(''); This line makes everything disappear
-
-      //function getTweets(){
       index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          var $tweet = $('<div class = tweetLine></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + moment(tweet.created_at).fromNow());
+          $tweet.attr('userName', tweet.user);
           $tweet.appendTo($p);
           index -= 1;
         }
-      //}
-
     });
+    
+    /*document.getElementsByClassName("tweetLine").addEventListener("click", function(userName){
+      var $p = $('p');
+      $p.html('');
+      index = streams.home.length - 1;
+      while(index >= 0){
+        var tweet = streams.home[index];
+        if(tweet.user === userName){
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + moment(tweet.created_at).fromNow());
+          $tweet.appendTo($p);
+          index -= 1;
+        }
+      }
+    });*/
+    
+    /*var tweets = document.getElementsByClassName("tweetLine")
+    for(i = 0; i< tweets.length; i++){
+      tweets[i].addEventListener('click', function(){
+        console.log("TRIGGER")
+      });
+    }*/
     </script> </p>
 
     <button id=#refresh> Check for new Tweets </button>
     <script>
-    //document.getElementById("#refresh").addEventListener("click", FILLME);
+    document.getElementById("#refresh").addEventListener("click", function() {
+      var $p = $('p');
+      $p.html('');
+      
+      index = streams.home.length - 1;
+      while(index >= 0){
+        var tweet = streams.home[index];
+        var $tweet = $('<div></div>');
+        //$tweet.attr(user, tweet.user);
+        $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + moment(tweet.created_at).fromNow());
+        $tweet.appendTo($p);
+        index -= 1;
+      }
+      
+    });
     </script>
+    
   </body>
 </html>

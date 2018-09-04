@@ -1,0 +1,18 @@
+* {
+  background-color: lightblue;
+  text-align: center;
+}
+
+h1{
+  background-color: gold;
+  font-size: 30;
+  font-family: georgia;
+}
+
+button {
+  background-color: white;
+}
+
+.tweetLine {
+  data-user: undefined;
+}
