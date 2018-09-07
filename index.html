@@ -22,77 +22,10 @@
         $tweet.attr('userName', tweet.user);
         $tweet.appendTo($p);
         index -= 1;
-      }
-      
-      var sayName = function (tweet){
-        console.log(this.attr('userName'));
-      }
-      
-      $(".tweetLine").on("click", sayName);
-      
-      
-      /*
-      var tweets = document.getElementsByClassName("tweetLine")
-      for(i = 0; i< tweets.length; i++){
-        tweets[i].addEventListener('click', console.log("TRIGGER"));
-      }*/
-      
-      
-      
-      
-      
-      //-------------CRUFT BELOW------------ 
-      /*var tweets = document.getElementsByClassName("tweetLine")
-      for(i = 0; i< tweets.length; i++){
-        tweets[i].addEventListener('click', function(){
-          console.log("TRIGGER")
-        });
-      }*/
-      
-      
-      
-      /*var tweets = document.getElementsByClassName("tweetLine")
-      console.log('length: :', tweets.length)
-      for(i = 0; i< tweets.length; i++){
-        console.log(tweets[i].attr("userName"));
-        tweets[i].addEventListener('click', function(){
-          console.log('trigger');
-        });
-      }*/
-      
-      //Refactoring using more jQuery
-      /*var $tweets = $(".tweetLine");
-      //console.log('length: :', $tweets.length);
-      console.log(i, $tweets[i].attr('userName'));
-      for(i = 0; i< $tweets.length; i++){
-        $tweets[i].on("click", function(){
-          console.log(tweet.userName);
-        })
-      }*/
-      
-      //Refactoring to use only jQuery -- 
-      /*$(".tweetLine").on("click", function(){
-        console.log(this.attr("userName"));
-      })*/
-
-
-    
-    /*document.getElementsByClassName("tweetLine").addEventListener("click", function(userName){
-      var $p = $('p');
-      $p.html('');
-      index = streams.home.length - 1;
-      while(index >= 0){
-        var tweet = streams.home[index];
-        if(tweet.user === userName){
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + moment(tweet.created_at).fromNow());
-          $tweet.appendTo($p);
-          index -= 1;
-        }
-      }
-    });*/
-    
-    });    
+      }    
+      $(".tweetLine").on("click", oneName);
+    });
+        
     </script> </p>
 
     <button id=#refresh> Check for new Tweets </button>
@@ -104,14 +37,32 @@
       index = streams.home.length - 1;
       while(index >= 0){
         var tweet = streams.home[index];
-        var $tweet = $('<div></div>');
-        //$tweet.attr(user, tweet.user);
+        var $tweet = $('<div class = tweetLine></div>');
         $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + moment(tweet.created_at).fromNow());
+        $tweet.attr('userName', tweet.user);
         $tweet.appendTo($p);
         index -= 1;
       }
-      
+      $(".tweetLine").on("click", oneName);
     });
+    
+    var oneName = function (){
+      var userName = $(this).attr('username');
+      var $p = $('p');
+      $p.html('');
+      index = streams.home.length - 1;
+      while(index >= 0){
+        var tweet = streams.home[index];
+        if(tweet.user === userName){
+          var $tweet = $('<div class = tweetLine></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + moment(tweet.created_at).fromNow());
+          $tweet.attr('userName', tweet.user);
+          $tweet.appendTo($p);  
+        }
+        index -= 1;
+      }
+      
+    }
     </script>
     
   </body>
